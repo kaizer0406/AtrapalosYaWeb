@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        Registro de Tiendas
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Tienda</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="idTienda" value="Id " styleClass="control-label" />
+			<p:inputText autocomplete="off" id="idTienda"
+				styleClass="form-control"
+				value="#{tiendaController.tienda.idTienda}" required="true" />
+
+			<h:outputLabel for="desTienda" value="Descripcion"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="desTienda"
+				styleClass="form-control"
+				value="#{tiendaController.tienda.desTienda}" maxlength="30"
+				required="true" />
+
+			<h:outputLabel for="rucTienda" value="Ruc"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="rucTienda"
+				styleClass="form-control"
+				value="#{tiendaController.tienda.rucTienda}" maxlength="30"
+				required="true" />
+
+			<h:outputLabel for="telefonoTienda" value="telefonoTienda"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="telefonoTienda"
+				styleClass="form-control"
+				value="#{tiendaController.tienda.telefonoTienda}" maxlength="30"
+				required="true" />
+
+
+			<br />
+
+			<h:outputLabel value="Personal" for="cboPersonal" />
+			<p:selectOneMenu id="cboPersonal"
+				value="#{tiendaController.tienda.personal}"
+				converter="omnifaces.SelectItemsConverter">
+
+				<f:selectItems value="#{tiendaController.listaPersonal}" var="personal"
+					itemLabel="#{personal.desPersonal}" itemValue="#{personal}" />
+
+			</p:selectOneMenu>
+
+			<p:commandButton value="Grabar"
+				actionListener="#{tiendaController.insertarTienda()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listTienda?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listTienda?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

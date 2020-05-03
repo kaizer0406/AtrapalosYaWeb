@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        Registro de Personal
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Personal</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="idPersonal" value="Id " styleClass="control-label" />
+			<p:inputText autocomplete="off" id="idPersonal"
+				styleClass="form-control"
+				value="#{personalController.personal.idPersonal}" required="true" />
+				
+			<h:outputLabel for="desPersonal" value="Nombres y Apellidos"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="desPersonal"
+				styleClass="form-control"
+				value="#{personalController.personal.desPersonal}"
+				maxlength="30" required="true"/>
+			
+			<h:outputLabel for="fechaNacimientoPersonal" value="Fecha Nacimiento"
+				styleClass="control-label" />	
+				<br></br>				
+			<p:calendar id="fechaNacimientoPersonal" pattern="dd/MM/yyyy" 
+					value="#{personalController.personal.fechaNacimientoPersonal}"
+					showOn="button" timeZone="UTC" required="true"
+					requiredMessage="fecha vacía">
+				</p:calendar>
+				<br ></br>
+				
+				<h:outputLabel for="emailPersonal" value="Email"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="emailPersonal"
+				styleClass="form-control"
+				value="#{personalController.personal.emailPersonal}"
+				maxlength="30" required="true"/>	
+			
+			<h:outputLabel for="dniPersonal" value="Dni"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="dniPersonal"
+				styleClass="form-control"
+				value="#{personalController.personal.dniPersonal}"
+				maxlength="30" required="true"/>
+				
+				<h:outputLabel for="usuarioPersonal" value="Usuario"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="usuarioPersonal"
+				styleClass="form-control"
+				value="#{personalController.personal.usuarioPersonal}"
+				maxlength="30" required="true"/>
+				
+				<h:outputLabel for="contraseñaPersonal" value="Contraseña"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="contraseñaPersonal"
+				styleClass="form-control"
+				value="#{personalController.personal.contraseñaPersonal}"
+				maxlength="30" required="true"/>
+				
+			<br />
+			
+			<h:outputLabel value="Rol" for="cboRol" />
+			<p:selectOneMenu id="cboRol" value="#{personalController.personal.rol}" converter="omnifaces.SelectItemsConverter">
+			
+				<f:selectItems value="#{personalController.listaRol}" var="rol" itemLabel="#{rol.desRol}" itemValue="#{rol}"/> 
+				
+			</p:selectOneMenu>
+
+			<p:commandButton value="Grabar"
+				actionListener="#{personalController.insertarPersonal()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listPersonal?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listPersonal?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
