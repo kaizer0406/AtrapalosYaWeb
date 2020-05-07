@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        Registro de Medios de pago
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Medios de pago</span>
+		<div align="center">
+				<h:graphicImage value="/resources/img/imgfondometpago.jpg" height="40%"
+					width="40%"></h:graphicImage>
+			</div>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="idMedioPago" value="Id " styleClass="control-label" />
+			<p:inputText autocomplete="off" id="idMedioPago"
+				styleClass="form-control"
+				value="#{medioPagoController.mediopago.idMedioPago}" required="true" />
+				
+			<h:outputLabel for="desMedioPago" value="Nombre del medio de pago "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="desMedioPago"
+				styleClass="form-control"
+				value="#{medioPagoController.mediopago.desMedioPago}"
+				maxlength="30" required="true"/>
+
+			<h:outputLabel for="seguridad" value="Numero de seguridad "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="seguridad"
+				styleClass="form-control"
+				value="#{medioPagoController.mediopago.seguridad}"
+				maxlength="5" required="true"/>
+			<br />
+			
+
+			<p:commandButton value="Grabar"
+				actionListener="#{medioPagoController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listMedioPago?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listMedioPago?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
