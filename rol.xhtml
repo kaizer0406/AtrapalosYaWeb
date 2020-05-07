@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        Registro de Roles
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Roles</span>
+		<div align="center">
+				<h:graphicImage value="/resources/img/imgfondorol.jpg" height="30%"
+					width="30%"></h:graphicImage>
+			</div>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="idRol" value="Id " styleClass="control-label" />
+			<p:inputText autocomplete="off" id="idGenero"
+				styleClass="form-control"
+				value="#{rolController.rol.idRol}" required="true" />
+				
+			<h:outputLabel for="desRol" value="Descripcion "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="desRol"
+				styleClass="form-control"
+				value="#{rolController.rol.desRol}"
+				maxlength="30" required="true"/>
+
+			<br />
+			
+
+			<p:commandButton value="Grabar"
+				actionListener="#{rolController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listRol?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listRol?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
