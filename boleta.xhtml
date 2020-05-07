@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        Registro de Boleta
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Boleta</span>
+		<div align="center">
+				<h:graphicImage value="/resources/img/docs.jpg" height="30%"
+					width="30%"></h:graphicImage>
+			</div>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<!--  <h:outputLabel for="idBoleta" value="Id " styleClass="control-label" />
+			<p:inputText autocomplete="off" id="idBoleta"
+				styleClass="form-control"
+				value="#{boletaController.boleta.idBoleta}" required="true" />-->
+				
+			<h:outputLabel for="desBoleta" value="Nombre de Boleta"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="desBoleta"
+				styleClass="form-control"
+				value="#{boletaController.boleta.desBoleta}"
+				maxlength="30" required="true"/>
+			
+			<h:outputLabel for="fechaRegistro" value="Fecha de Registro"
+				styleClass="control-label" />	
+				<br></br>				
+			<p:calendar id="fechaRegistro" pattern="dd/MM/yyyy" 
+					value="#{boletaController.boleta.fechaRegistro}"
+					showOn="button" timeZone="UTC" required="true"
+					requiredMessage="fecha vacía">
+				</p:calendar>
+				<br ></br>
+												
+			<br />
+			
+			<h:outputLabel value="Cliente" for="cboCliente" />
+			<p:selectOneMenu id="cboCliente" value="#{boletaController.boleta.cliente}" converter="omnifaces.SelectItemsConverter">			
+				<f:selectItems value="#{boletaController.listaCliente}" var="cliente" itemLabel="#{cliente.desCliente}" itemValue="#{cliente}"/> 				
+			</p:selectOneMenu>
+			
+			<h:outputLabel value="MedioPago" for="cboMedioPago" />
+			<p:selectOneMenu id="cboMedioPago" value="#{boletaController.boleta.medioPago}" converter="omnifaces.SelectItemsConverter">			
+				<f:selectItems value="#{boletaController.listaMedioPago}" var="medioPago" itemLabel="#{medioPago.desMedioPago}" itemValue="#{medioPago}"/> 				
+			</p:selectOneMenu>
+			
+			<h:outputLabel value="Tienda" for="cboTienda" />
+			<p:selectOneMenu id="cboTienda" value="#{boletaController.boleta.tienda}" converter="omnifaces.SelectItemsConverter">			
+				<f:selectItems value="#{boletaController.listaTienda}" var="tienda" itemLabel="#{tienda.desTienda}" itemValue="#{tienda}"/> 				
+			</p:selectOneMenu>
+
+			<p:commandButton value="Grabar"
+				actionListener="#{boletaController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listBoleta?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listBoleta?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

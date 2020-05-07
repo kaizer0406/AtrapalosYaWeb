@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        Registro de Detalle de Boleta
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Detalle de Boleta</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			 
+			 <!--  <h:outputLabel for="idBoleta" value="Id " styleClass="control-label" />
+			<p:inputText autocomplete="off" id="idBoleta"
+				styleClass="form-control" readonly="true"
+				value="#{boletaController.boleta.idBoleta}" required="true" /> -->
+			
+			<h:outputLabel for="boleta" value="Boleta"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="boleta"
+				styleClass="form-control" readonly="true"
+				value="#{detalleBoletaController.detalleBoleta.boleta.desBoleta}"
+				maxlength="30" required="true"/>
+			
+			<h:outputLabel for="tienda" value="Tienda"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="tienda"
+				styleClass="form-control" readonly="true"
+				value="#{detalleBoletaController.detalleBoleta.boleta.tienda.desTienda}"
+				maxlength="30" required="true"/>
+				
+				<h:outputLabel for="cliente" value="Cliente"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="cliente"
+				styleClass="form-control" readonly="true"
+				value="#{detalleBoletaController.detalleBoleta.boleta.cliente.desCliente}"
+				maxlength="30" required="true"/>
+				
+				<h:outputLabel for="fechaRegistro" value="Fecha de Compra"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="fechaRegistro"
+				styleClass="form-control" readonly="true"
+				value="#{detalleBoletaController.detalleBoleta.boleta.fechaRegistro}"
+				maxlength="30" required="true"/>
+				
+			<h:outputLabel for="producto" value="Producto"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="producto"
+				styleClass="form-control" readonly="true"
+				value="#{detalleBoletaController.detalleBoleta.producto.desProducto}"
+				maxlength="30" required="true"/>
+				
+				<h:outputLabel for="precioProducto" value="Precio del Producto"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="precioProducto"
+				styleClass="form-control" readonly="true"
+				value="#{detalleBoletaController.detalleBoleta.producto.precioProducto}"
+				maxlength="30" required="true"/>
+				
+				<h:outputLabel for="cantidad" value="Cantidad"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="cantidad"
+				styleClass="form-control" readonly="true"
+				value="#{detalleBoletaController.detalleBoleta.cantidad}"
+				maxlength="30" required="true"/>
+				
+				<!--  <h:outputLabel value="Producto" for="cboProducto" />
+			<p:selectOneMenu id="cboProducto" value="#{detalleBoletaController.detalleBoleta.producto}" converter="omnifaces.SelectItemsConverter">			
+				<f:selectItems value="#{detalleBoletaController.listaProducto}" var="producto" itemLabel="#{producto.desProducto}" itemValue="#{producto}"/> 				
+			</p:selectOneMenu>  -->
+			
+			<!-- <h:outputLabel for="totalMonto" value="Monto Total"
+				styleClass="control-label" />
+			<p:inputText autocomplete="on" id="cantidad"
+				styleClass="form-control"
+				value="#{(detalleBoletaController.producto.precioProducto)*(detalleBoletaController.detalleBoleta.cantidad)}"
+				maxlength="30" required="false"/>   -->
+			
+				<br ></br>
+												
+			<br />
+			
+			
+			
+			<!--  <h:outputLabel value="Boleta" for="cboBoleta" />
+			<p:selectOneMenu id="cboBoleta" value="#{detalleBoletaController.detalleBoleta.boleta}" converter="omnifaces.SelectItemsConverter">			
+				<f:selectItems value="#{detalleBoletaController.listaBoleta}" var="boleta" itemLabel="#{boleta.desBoleta}" itemValue="#{boleta}"/> 				
+			</p:selectOneMenu> -->
+			
+			
+
+			<!--  <p:commandButton value="Grabar"
+				actionListener="#{detalleBoletaController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listDetalleBoleta?faces-redirect=true" /> -->
+				
+			<p:commandButton value="Volver"
+				action="listDetalleBoleta?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" /> 
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
