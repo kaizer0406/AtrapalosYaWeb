@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        Registro de Clientes
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Clientes</span>
+		<div align="center">
+				<h:graphicImage value="/resources/img/imgfondocliente.jpg" height="30%"
+					width="30%"></h:graphicImage>
+			</div>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="idCliente" value="Id " styleClass="control-label" />
+			<p:inputText autocomplete="off" id="idCliente"
+				styleClass="form-control"
+				value="#{clienteController.cliente.idCliente}" required="true" />
+
+			<h:outputLabel for="desCliente" value="Nombres "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="desCliente"
+				styleClass="form-control"
+				value="#{clienteController.cliente.desCliente}" maxlength="30"
+				required="true" />
+			<br></br>
+			<h:outputLabel for="fechaNacimiento" value="Fecha " styleClass="control-label" />
+			<p:calendar id="fechaNacimiento" pattern="dd/MM/yyyy"
+				value="#{clienteController.cliente.fechaNacimiento}" showOn="button"
+				timeZone="UTC" required="true" requiredMessage="fecha vacía">
+			</p:calendar>
+			<br></br>
+			<h:outputLabel for="emailCliente" value="Email "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="emailCliente"
+				styleClass="form-control"
+				value="#{clienteController.cliente.emailCliente}" maxlength="30"
+				required="true" />
+
+			<h:outputLabel for="dniCliente" value="DNI"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="dniCliente"
+				styleClass="form-control"
+				value="#{clienteController.cliente.dniCliente}" maxlength="30"
+				required="true" />
+
+			<h:outputLabel for="usuarioCliente" value="Usuario "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="usuarioCliente"
+				styleClass="form-control"
+				value="#{clienteController.cliente.usuarioCliente}" maxlength="30"
+				required="true" />
+
+
+			<h:outputLabel for="contraseñaCliente" value="Contraseña "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="contraseñaCliente"
+				styleClass="form-control"
+				value="#{clienteController.cliente.contraseñaCliente}" maxlength="30"
+				required="true" />
+
+			<br />
+
+
+			<p:commandButton value="Grabar"
+				actionListener="#{clienteController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listCliente?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listCliente?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
