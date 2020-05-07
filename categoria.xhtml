@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        Registro de Productos
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Productos</span>
+		<div align="center">
+				<h:graphicImage value="/resources/img/imgfondoproducto.jpg" height="40%"
+					width="40%"></h:graphicImage>
+			</div>
+	</ui:define>
+	
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="idProducto" value="Id " styleClass="control-label" />
+			<p:inputText autocomplete="off" id="idProducto"
+				styleClass="form-control"
+				value="#{productoController.producto.idProducto}" required="true" />
+				
+			<h:outputLabel for="desProducto" value="Description"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="desProducto"
+				styleClass="form-control"
+				value="#{productoController.producto.desProducto}"
+				maxlength="30" required="true"/>
+				
+			<h:outputLabel for="precioProducto" value="Precio"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="precioProducto"
+				styleClass="form-control"
+				value="#{productoController.producto.precioProducto}"
+				maxlength="30" required="true"/>
+				<br></br>
+			<h:outputLabel for="fechaFabricacion" value="Fecha de fabricación"
+				styleClass="control-label" />	
+			<p:calendar id="fechaFabricacion" pattern="dd/MM/yyyy"
+					value="#{productoController.producto.fechaFabricacion}"
+					showOn="button" timeZone="UTC" required="true"
+					requiredMessage="fecha vacía">
+				</p:calendar>	
+				<br></br>
+			<h:outputLabel for="procedencia" value="Procedencia"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="procedencia"
+				styleClass="form-control"
+				value="#{productoController.producto.procedencia}"
+				maxlength="30" required="true"/>
+			<br />
+			
+			<h:outputLabel value="Categoria" for="cboCategoria" />
+			<p:selectOneMenu id="cboCategoria" value="#{productoController.producto.categoria}" converter="omnifaces.SelectItemsConverter">
+			
+				<f:selectItems value="#{productoController.listcategoria}" var="m" itemLabel="#{m.desCategoria}" itemValue="#{m}"/> 
+				
+			</p:selectOneMenu>
+
+			<p:commandButton value="Grabar"
+				actionListener="#{productoController.insertarproducto()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listProducto?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listProducto?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
